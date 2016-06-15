@@ -15,30 +15,12 @@ public class Boot {
 		// Title in header bar
 		BeginSession();
 		
-		float width  = 50;
-		float height = 50;
-		float x = 100;
-		float y = 100;
-		
 		//while display is not requested to be closed 
 		while(!Display.isCloseRequested()){
-			//begin drawing a line
-			glBegin(GL_LINES);
-			//2f = two floats
-			//vertex starting point
-			glVertex2f(10,10);
-			//vertex ending point
-			glVertex2f(100,100);
-			glEnd();
 			
-			//draw a rectangle
-			glBegin(GL_QUADS);
-			glVertex2f(x,y);  					//top left corner
-			glVertex2f(x + width,y);  			//Top  right corner
-			glVertex2f(x + width, y + height); 	//Bottom right corner
-			glVertex2f(x,y + height);  		//Bottom left corner
-			glEnd();
-			
+			DrawQuad(50,50,100,100);
+
+			DrawQuad(150,150,100,100);
 			
 			Display.update();
 			Display.sync(60);
