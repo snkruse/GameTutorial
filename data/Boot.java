@@ -12,7 +12,7 @@ import static helpers.Artist.*;
 public class Boot {
 	
 	public Boot(){
-		// Title in header bar weell well well
+		// Title in header bar
 		BeginSession();
 		
 		float width  = 50;
