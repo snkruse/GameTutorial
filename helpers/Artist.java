@@ -16,15 +16,18 @@ import java.io.InputStream;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
+
 
 // what we want to do in the game and what we want to do with the GL
 public class Artist {
 	
 	
 	public static final int WIDTH = 1280, HEIGHT = 960;
+
 
 	
 	public static void BeginSession(){
@@ -45,8 +48,8 @@ public class Artist {
 		glMatrixMode(GL_MODELVIEW);
 		//Draw our textures
 		//glEnable(GL_Texture_2D);
-
-		
+		GL11.glEnable(GL11.GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 	
 	public static void DrawQuad(float x, float y, float width, float height)

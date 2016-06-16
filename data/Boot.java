@@ -5,6 +5,8 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.Texture;
 
+import helpers.Clock;
+
 import static org.lwjgl.opengl.GL11.*;
 
 //import our artist class
@@ -38,12 +40,18 @@ public class Boot {
 		TileGrid grid = new TileGrid(map);
 		grid.SetTile(3, 3, grid.getTile(2, 3).getType());
 		
+		Enemy e = new Enemy(QuickLoad("UFO64"), grid.getTile(10, 10), 64,64, 3);
 		
 		
 		//while display is not requested to be closed 
 		while(!Display.isCloseRequested()){
-
+			//Always update before we draw
+			Clock.update();
+			e.Update();
+			
+			
 			grid.Draw();
+			e.Draw();
 			
 			Display.update();
 			Display.sync(60);
