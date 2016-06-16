@@ -10,16 +10,21 @@ import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
 import static org.lwjgl.opengl.GL11.glVertex2f;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 // what we want to do in the game and what we want to do with the GL
 public class Artist {
 	
 	
-	public static final int WIDTH = 1280, HEIGHT = 9960;
+	public static final int WIDTH = 1280, HEIGHT = 960;
 
 	
 	public static void BeginSession(){
@@ -57,6 +62,7 @@ public class Artist {
 	
 	public static void DrawQuadTex(Texture tex, float x, float y, float width, float height){
 		tex.bind();
+		// translate is our local coordinates
 		glTranslatef(x,y,0);
 		glBegin(GL_QUADS);
 		glTexCoord2f(0,0);
@@ -66,13 +72,32 @@ public class Artist {
 		glTexCoord2f(1,1);
 		glVertex2f(width,height);
 		glTexCoord2f(0,1);
-		glVertex2f(0,height);
-		glLoadIdentity();
+		glVertex2f(0,height);	
 		glEnd();
+		glLoadIdentity();
+		
+	}
+
+	//Method will load texture from PNG file
+	public static Texture LoadTexture(String path, String fileType)
+	{
+		Texture tex = null;
+		InputStream in = ResourceLoader.getResourceAsStream(path);
+		try {
+			tex = TextureLoader.getTexture(fileType, in);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return tex;
 	}
 	
-	
-
+	//Method 
+	public static Texture QuickLoad(String name){
+		Texture tex = null;
+		tex = LoadTexture("res/" + name + ".png", "PNG");
+		return tex;
+	}
 
 	
 }
