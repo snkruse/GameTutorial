@@ -41,17 +41,17 @@ public class Boot {
 		grid.SetTile(3, 3, grid.getTile(2, 3).getType());
 		
 		Enemy e = new Enemy(QuickLoad("UFO64"), grid.getTile(10, 10), 64,64, 3);
-		
+		Wave wave = new Wave(40, e);
+		Player player = new Player(grid);
 		
 		//while display is not requested to be closed 
 		while(!Display.isCloseRequested()){
 			//Always update before we draw
 			Clock.update();
-			e.Update();
-			
-			
+
 			grid.Draw();
-			e.Draw();
+			wave.Update();
+			player.Update();
 			
 			Display.update();
 			Display.sync(60);

@@ -33,7 +33,7 @@ public class Artist {
 	public static void BeginSession(){
 		Display.setTitle("FirstGame");
 		try {
-			Display.setDisplayMode(new DisplayMode(600,400));
+			Display.setDisplayMode(new DisplayMode(1280,960));
 			//create screen
 			Display.create();
 		} catch (LWJGLException e) {
